@@ -1,35 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>30-Day Language Challenge</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="hero">
-    <h1>30-DAY LANGUAGE CHALLENGE</h1>
-    <p>Master Advanced Phrasal Verbs</p>
-  </header>
+<header class="hero">
+  <h1>30-Day Language Challenge</h1>
+  <p>Master Advanced Phrasal Verbs</p>
+</header>
 
-  <!-- COURSES LIST -->
-  <section id="courses-list" class="courses-grid"></section>
+<section class="courses" id="courses"></section>
 
-  <!-- COURSE VIEW -->
-  <div id="course-view" class="hidden">
-    <button id="back-btn">← Back to courses</button>
-    <h2 id="course-title"></h2>
-    <div id="days-list"></div>
-    <div id="day-content"></div>
-  </div>
+<section class="lesson" id="lesson" style="display:none;">
+  <button class="back-btn" onclick="goBack()">← Back</button>
+  <div id="lesson-content"></div>
+  <button id="next-day" class="next-btn">Next Day →</button>
+</section>
 
-  <!-- COURSES -->
-  <script src="courses/advanced-phrasal-verbs.js"></script>
-  <!-- другие курсы тут -->
-
-  <!-- LOGIC -->
-  <script src="main.js"></script>
+<script src="courses/advanced-phrasal-verbs.js"></script>
+<script src="main.js"></script>
 
 </body>
 </html>
