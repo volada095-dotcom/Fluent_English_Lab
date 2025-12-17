@@ -7,11 +7,11 @@ body {
 /* HERO */
 .hero {
   text-align: center;
-  padding: 50px 20px;
+  padding: 60px 20px;
   color: white;
 }
 
-/* COURSES */
+/* ===== КУРСЫ (ГЛАВНАЯ) ===== */
 .courses {
   display: flex;
   justify-content: center;
@@ -27,23 +27,39 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-/* LESSON PAGE */
-.lesson-page {
-  display: flex;
-  min-height: 100vh;
+.course-card h2 {
+  margin-top: 0;
 }
 
-/* SIDEBAR */
+.course-card button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #6f7fdc, #8f78d6);
+  color: white;
+  font-size: 16px;
+}
+
+/* ===== СТРАНИЦА УРОКА ===== */
+.lesson-page {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(180deg, #6f7fdc, #8f78d6);
+}
+
+/* ЛЕВЫЙ САЙДБАР */
 .days-sidebar {
   width: 220px;
+  padding: 20px;
   background: rgba(255,255,255,0.15);
   backdrop-filter: blur(8px);
-  padding: 20px;
+  color: white;
 }
 
 .days-sidebar h3 {
   margin-top: 0;
-  color: white;
 }
 
 #days-list {
@@ -57,7 +73,6 @@ body {
   margin-bottom: 6px;
   border-radius: 8px;
   cursor: pointer;
-  color: white;
 }
 
 #days-list li:hover {
@@ -70,12 +85,12 @@ body {
   font-weight: bold;
 }
 
-/* CONTENT */
+/* КОНТЕНТ УРОКА */
 .lesson-area {
   flex: 1;
   background: white;
   padding: 30px;
-  border-radius: 20px 0 0 0;
+  overflow-y: auto;
 }
 
 .lesson-area iframe {
@@ -85,14 +100,14 @@ body {
   margin-top: 15px;
 }
 
-/* BUTTONS */
+/* КНОПКИ */
 .back-btn,
 .next-btn {
-  background: linear-gradient(90deg, #6f7fdc, #8f78d6);
-  color: white;
-  border: none;
+  margin-top: 20px;
   padding: 12px 18px;
   border-radius: 10px;
+  border: none;
   cursor: pointer;
-  margin-top: 20px;
+  background: linear-gradient(90deg, #6f7fdc, #8f78d6);
+  color: white;
 }
