@@ -1,106 +1,75 @@
-function getProgress(courseId) {
-  return JSON.parse(localStorage.getItem("progress_" + courseId)) || {
-    completedDays: [],
-    currentDay: 1
-  };
+const coursesContainer = document.getElementById("courses");
+const lessonSection = document.getElementById("lesson");
+const lessonContent = document.getElementById("lesson-content");
+const nextBtn = document.getElementById("next-day");
+
+let currentCourse = null;
+let currentDay = 1;
+
+function getProgress(id) {
+  return JSON.parse(localStorage.getItem(id)) || { day: 1 };
 }
 
-function saveProgress(courseId, progress) {
-  localStorage.setItem("progress_" + courseId, JSON.stringify(progress));
-}
-const coursesList = document.getElementById("courses-list");
-const courseView = document.getElementById("course-view");
-const courseTitle = document.getElementById("course-title");
-const daysList = document.getElementById("days-list");
-const dayContent = document.getElementById("day-content");
-const backBtn = document.getElementById("back-btn");
-
-/* ---------- COURSES SCREEN ---------- */
-
-function getProgress(course) {
-  const completed = Object.keys(course.lessons).length;
-  return Math.floor((completed / 30) * 100);
+function saveProgress(id, day) {
+  localStorage.setItem(id, JSON.stringify({ day }));
 }
 
 function renderCourses() {
-  coursesList.innerHTML = "";
+  coursesContainer.innerHTML = "";
 
-  window.courses.forEach(course => {
-    const progress = getProgress(course);
+  courses.forEach(course => {
+    const progress = getProgress(course.id);
+    const percent = Math.floor((progress.day - 1) / course.days * 100);
 
     const card = document.createElement("div");
     card.className = "course-card";
 
     card.innerHTML = `
-      <h3>${course.title}</h3>
-
-      <div class="progress-bar">
-        <div class="progress" style="width:${progress}%"></div>
-      </div>
-
-      <p class="progress-text">${progress}% COMPLETE</p>
-
-      <button class="course-btn">
-        ${progress > 0 ? "Continue" : "Start Course"}
-      </button>
+      <h2>${course.title}</h2>
+      <div class="progress"><div style="width:${percent}%"></div></div>
+      <p>${percent}% complete</p>
+      <button>${progress.day > 1 ? "Continue" : "Start Course"}</button>
     `;
 
-    card.querySelector("button").onclick = () => openCourse(course);
+    card.querySelector("button").onclick = () => {
+      openLesson(course, progress.day);
+    };
 
-    coursesList.appendChild(card);
+    coursesContainer.appendChild(card);
   });
 }
 
-/* ---------- COURSE ---------- */
+function openLesson(course, day) {
+  currentCourse = course;
+  currentDay = day;
 
-function openCourse(course) {
-  coursesList.classList.add("hidden");
-  courseView.classList.remove("hidden");
+  coursesContainer.style.display = "none";
+  lessonSection.style.display = "block";
 
-  courseTitle.textContent = course.title;
-  daysList.innerHTML = "";
-  dayContent.innerHTML = "";
-
-  for (let i = 1; i <= 30; i++) {
-    const btn = document.createElement("button");
-    btn.textContent = `Day ${i}`;
-
-    if (course.lessons[i]) {
-      btn.onclick = () => openDay(i, course);
-    } else {
-      btn.disabled = true;
-    }
-
-    daysList.appendChild(btn);
+  const lesson = course.lessons[day];
+  if (!lesson) {
+    alert("Course completed 🎉");
+    goBack();
+    return;
   }
+
+  lessonContent.innerHTML = `
+    <h2>${lesson.title}</h2>
+    <p>${lesson.content}</p>
+    <iframe src="${lesson.video}" allowfullscreen></iframe>
+  `;
+
+  saveProgress(course.id, day);
 }
 
-function openDay(dayNumber, course) {
-  const lesson = course.lessons[dayNumber];
-  let html = `<h3>Day ${dayNumber}: ${lesson.title}</h3>`;
-
-  if (lesson.videos) {
-    lesson.videos.forEach(v => {
-      html += `
-        <iframe src="${v.url}" width="640" height="360" allowfullscreen></iframe>
-      `;
-    });
-  }
-
-  if (lesson.content) {
-    html += `<div class="lesson-text">${lesson.content}</div>`;
-  }
-
-  if (lesson.exercises) {
-    html += `<button onclick="startTest(${dayNumber}, '${course.id}')">Start Test</button>`;
-  }
-
-  dayContent.innerHTML = html;
-}
-
-backBtn.onclick = () => {
-  courseView.classList.add("hidden");
-  coursesList.classList.remove("hidden");
+nextBtn.onclick = () => {
+  openLesson(currentCourse, currentDay + 1);
 };
+
+function goBack() {
+  lessonSection.style.display = "none";
+  coursesContainer.style.display = "flex";
+  renderCourses();
+}
 
 renderCourses();
