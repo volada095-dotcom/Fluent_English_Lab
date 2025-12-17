@@ -1,3 +1,13 @@
+function getProgress(courseId) {
+  return JSON.parse(localStorage.getItem("progress_" + courseId)) || {
+    completedDays: [],
+    currentDay: 1
+  };
+}
+
+function saveProgress(courseId, progress) {
+  localStorage.setItem("progress_" + courseId, JSON.stringify(progress));
+}
 const coursesList = document.getElementById("courses-list");
 const courseView = document.getElementById("course-view");
 const courseTitle = document.getElementById("course-title");
