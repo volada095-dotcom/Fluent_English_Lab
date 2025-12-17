@@ -35,3 +35,42 @@ function openDay(dayNumber, course) {
 
   dayContent.innerHTML = html;
 }
+function startTest(dayNumber, courseId) {
+  const course = window.courses.find(c => c.id === courseId);
+  const lesson = course.lessons[dayNumber];
+  const exercise = lesson.exercises[0];
+
+  let html = `<h3>${exercise.name}</h3>`;
+
+  exercise.questions.forEach((q, index) => {
+    html += `
+      <div class="question">
+        <p>${index + 1}. ${q.question}</p>
+        <input type="text" id="q${index}">
+      </div>
+    `;
+  });
+
+  html += `<button onclick="checkAnswers(${dayNumber}, '${courseId}')">Check answers</button>`;
+
+  dayContent.innerHTML = html;
+}
+function checkAnswers(dayNumber, courseId) {
+  const course = window.courses.find(c => c.id === courseId);
+  const lesson = course.lessons[dayNumber];
+  const exercise = lesson.exercises[0];
+
+  let correct = 0;
+
+  exercise.questions.forEach((q, index) => {
+    const userAnswer = document.getElementById(`q${index}`).value.trim().toLowerCase();
+    const correctAnswer = q.answer.toLowerCase();
+
+    if (userAnswer === correctAnswer) {
+      correct++;
+    }
+  });
+
+  alert(`Result: ${correct} / ${exercise.questions.length}`);
+}
+
