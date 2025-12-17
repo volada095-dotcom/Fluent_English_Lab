@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>30-Day Language Challenge</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -12,12 +12,25 @@
   <p>Master Advanced Phrasal Verbs</p>
 </header>
 
+<!-- КАРТОЧКИ КУРСОВ -->
 <section class="courses" id="courses"></section>
 
-<section class="lesson" id="lesson" style="display:none;">
-  <button class="back-btn" onclick="goBack()">← Back</button>
-  <div id="lesson-content"></div>
-  <button id="next-day" class="next-btn">Next Day →</button>
+<!-- СТРАНИЦА УРОКА -->
+<section class="lesson-page" id="lesson-page" style="display:none;">
+
+  <!-- ЛЕВЫЙ СПИСОК ДНЕЙ -->
+  <aside class="days-sidebar">
+    <h3>Days</h3>
+    <ul id="days-list"></ul>
+  </aside>
+
+  <!-- КОНТЕНТ УРОКА -->
+  <main class="lesson-area">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <div id="lesson"></div>
+    <button class="next-btn" id="next-btn">Next Day →</button>
+  </main>
+
 </section>
 
 <script src="courses/advanced-phrasal-verbs.js"></script>
