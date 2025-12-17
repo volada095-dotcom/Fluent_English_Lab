@@ -2,79 +2,97 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(180deg, #6f7fdc, #8f78d6);
-  color: #222;
 }
 
+/* HERO */
 .hero {
   text-align: center;
-  padding: 60px 20px;
-  color: #fff;
+  padding: 50px 20px;
+  color: white;
 }
 
+/* COURSES */
 .courses {
   display: flex;
-  gap: 30px;
   justify-content: center;
+  gap: 30px;
   padding: 40px;
 }
 
 .course-card {
-  background: #fff;
+  background: white;
   width: 320px;
-  border-radius: 16px;
   padding: 25px;
+  border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-.course-card h2 {
+/* LESSON PAGE */
+.lesson-page {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.days-sidebar {
+  width: 220px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  padding: 20px;
+}
+
+.days-sidebar h3 {
   margin-top: 0;
+  color: white;
 }
 
-.progress {
-  height: 10px;
-  background: #eee;
-  border-radius: 6px;
-  margin: 15px 0;
+#days-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.progress div {
-  height: 100%;
-  background: linear-gradient(90deg, #4caf50, #6edc7d);
-  border-radius: 6px;
-  width: 0%;
-}
-
-.course-card button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #6f7fdc, #8f78d6);
-  color: #fff;
-  font-size: 16px;
+#days-list li {
+  padding: 10px;
+  margin-bottom: 6px;
+  border-radius: 8px;
   cursor: pointer;
+  color: white;
 }
 
-.lesson {
+#days-list li:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+#days-list li.active {
+  background: white;
+  color: #6f7fdc;
+  font-weight: bold;
+}
+
+/* CONTENT */
+.lesson-area {
+  flex: 1;
+  background: white;
   padding: 30px;
-  max-width: 900px;
-  margin: auto;
+  border-radius: 20px 0 0 0;
 }
 
-.lesson iframe {
+.lesson-area iframe {
   width: 100%;
   height: 320px;
   border-radius: 12px;
   margin-top: 15px;
 }
 
+/* BUTTONS */
 .back-btn,
 .next-btn {
-  margin-top: 20px;
-  padding: 12px 20px;
-  border-radius: 10px;
+  background: linear-gradient(90deg, #6f7fdc, #8f78d6);
+  color: white;
   border: none;
-  background: #6f7fdc;
-  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
   cursor: pointer;
+  margin-top: 20px;
 }
