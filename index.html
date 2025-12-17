@@ -2,28 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>English Courses</title>
+  <title>30-Day Language Challenge</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>English Courses</h1>
+  <!-- HEADER -->
+  <header class="hero">
+    <h1>30-DAY LANGUAGE CHALLENGE</h1>
+    <p>Master Advanced Phrasal Verbs</p>
+  </header>
 
-  <!-- Список курсов -->
-  <div id="courses-list"></div>
+  <!-- COURSES LIST -->
+  <section id="courses-list" class="courses-grid"></section>
 
-  <!-- Просмотр курса -->
+  <!-- COURSE VIEW -->
   <div id="course-view" class="hidden">
-    <button id="back-btn">← Back</button>
+    <button id="back-btn">← Back to courses</button>
     <h2 id="course-title"></h2>
     <div id="days-list"></div>
     <div id="day-content"></div>
   </div>
 
-  <!-- Курсы -->
+  <!-- COURSES -->
   <script src="courses/advanced-phrasal-verbs.js"></script>
+  <!-- другие курсы тут -->
 
-  <!-- Логика -->
+  <!-- LOGIC -->
   <script src="main.js"></script>
+
 </body>
 </html>
