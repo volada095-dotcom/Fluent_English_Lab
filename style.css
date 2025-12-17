@@ -20,4 +20,17 @@ body {
 
 #days-list button {
   margin: 5px;
+
+.video-block {
+  margin: 20px 0;
+}
+
+.lesson-text {
+  margin: 20px 0;
+}
+
+.question {
+  margin-bottom: 10px;
+}
+
 }
