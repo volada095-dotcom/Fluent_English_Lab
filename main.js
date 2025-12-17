@@ -1,23 +1,37 @@
-function openCourse(course) {
-  coursesList.classList.add("hidden");
-  courseView.classList.remove("hidden");
+function openDay(dayNumber, course) {
+  const lesson = course.lessons[dayNumber];
 
-  courseTitle.textContent = course.title;
-  daysList.innerHTML = "";
-  dayContent.innerHTML = "";
+  let html = `<h3>Day ${dayNumber}: ${lesson.title}</h3>`;
 
-  const totalDays = 30;
-
-  for (let i = 1; i <= totalDays; i++) {
-    const btn = document.createElement("button");
-    btn.textContent = `Day ${i}`;
-
-    if (course.lessons[i]) {
-      btn.onclick = () => openDay(i, course);
-    } else {
-      btn.disabled = true;
-    }
-
-    daysList.appendChild(btn);
+  // 1️⃣ Видео
+  if (lesson.videos) {
+    lesson.videos.forEach(video => {
+      html += `
+        <div class="video-block">
+          <iframe 
+            src="${video.url}" 
+            width="640" 
+            height="360" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      `;
+    });
   }
+
+  // 2️⃣ Текст под видео
+  if (lesson.content) {
+    html += `<div class="lesson-text">${lesson.content}</div>`;
+  }
+
+  // 3️⃣ Кнопка теста
+  if (lesson.exercises) {
+    html += `
+      <button onclick="startTest(${dayNumber}, '${course.id}')">
+        Start Test
+      </button>
+    `;
+  }
+
+  dayContent.innerHTML = html;
 }
